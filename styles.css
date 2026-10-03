@@ -51,15 +51,14 @@ button,input,select{font:inherit}
 .page-shell{
   min-height:calc(100dvh - 56px);
   height:auto;
-  padding:clamp(8px,1.5vh,14px);
+  padding:18px 14px 34px;
 }
 .paper{
   width:min(1280px,100%);
   min-height:calc(100dvh - 84px);
   height:auto;
   margin:auto;
-  display:grid;
-  grid-template-rows:auto auto minmax(0,1fr) auto;
+  display:block;
   padding:clamp(14px,2.2vh,22px) clamp(18px,2vw,28px) 10px;
   background:var(--page);
   border:1px solid var(--line);
@@ -104,10 +103,10 @@ button,input,select{font:inherit}
 }
 
 .lesson-layout{
-  min-height:0;
   display:grid;
   grid-template-columns:clamp(220px,20vw,245px) minmax(0,1fr);
   gap:16px;
+  align-items:start;
 }
 .operation-panel,
 .book-section{
@@ -182,10 +181,8 @@ button,input,select{font:inherit}
 }
 
 .lesson-content{
-  min-height:0;
   display:grid;
-  grid-template-rows:minmax(0,1.18fr) minmax(0,.82fr);
-  gap:12px;
+  gap:16px;
 }
 .book-section{min-height:0;padding:12px 14px}
 .section-heading{
@@ -199,13 +196,13 @@ button,input,select{font:inherit}
 .section-heading small{color:var(--muted);font-size:10px}
 .queue-section{
   display:grid;
-  grid-template-rows:auto minmax(0,1fr);
-  overflow:hidden;
+  grid-template-rows:auto auto;
+  overflow:visible;
+  min-height:310px;
 }
 .queue-rows{
-  min-height:0;
   display:grid;
-  grid-template-rows:repeat(2,minmax(0,1fr));
+  grid-template-rows:repeat(2,minmax(120px,auto));
 }
 .queue-row{
   min-height:0;
@@ -230,13 +227,19 @@ button,input,select{font:inherit}
   flex-wrap:wrap;
   padding:19px 4px 11px;
 }
-.mixed-section{grid-template-rows:auto minmax(0,1fr)}
-.mixed-stage{
-  min-height:0;
-  display:grid;
-  grid-template-rows:minmax(0,1fr) auto;
+.mixed-section{
+  grid-template-rows:auto auto;
+  min-height:360px;
 }
-.mixed-track{min-height:0;align-content:center}
+.mixed-stage{
+  display:grid;
+  grid-template-rows:auto auto;
+  min-height:285px;
+}
+.mixed-track{
+  min-height:245px;
+  align-content:center;
+}
 .node{
   position:relative;
   min-width:64px;
@@ -298,14 +301,13 @@ button,input,select{font:inherit}
 .empty{color:#7a8994;font-family:var(--serif);font-size:12px;font-style:italic}
 
 .lower-grid{
-  min-height:0;
   display:grid;
   grid-template-columns:.85fr 1.15fr;
   gap:12px;
+  min-height:260px;
 }
 .explanation{
-  height:calc(100% - 35px);
-  min-height:60px;
+  min-height:185px;
   margin-top:8px;
   overflow:auto;
   padding:10px 11px;
@@ -316,8 +318,8 @@ button,input,select{font:inherit}
   line-height:1.42;
 }
 .code-section pre{
-  height:calc(100% - 34px);
-  min-height:60px;
+  min-height:185px;
+  max-height:300px;
   margin:8px 0 0;
   overflow:auto;
   padding:9px 11px;
@@ -340,8 +342,10 @@ button,input,select{font:inherit}
 .general-key{background:var(--green-soft);border:1px solid #c9e6d4}
 
 .page-footer{
-  min-height:24px;
-  padding-top:7px;
+  min-height:34px;
+  margin-top:14px;
+  padding-top:10px;
+  border-top:1px solid var(--line);
   display:flex;
   justify-content:space-between;
   align-items:center;
@@ -359,23 +363,13 @@ button,input,select{font:inherit}
 @media(min-width:861px){
   .lesson-body{overflow-y:auto}
 }
-@media(max-height:680px) and (min-width:861px){
-  .paper{padding-top:10px;padding-bottom:6px}
-  .chapter-head h1{font-size:27px}
-  .chapter-head p{font-size:11px}
-  .chapter-rule{margin:7px 0 8px}
-  .operation-panel{padding:10px}
-  .margin-note{padding:7px 8px;font-size:8.8px}
-  .queue-track{padding-top:16px;padding-bottom:7px}
-  .node{min-width:58px;min-height:43px;font-size:14px}
-}
 @media(max-width:860px){
   .lesson-body{overflow:auto}
   .page-shell{height:auto;min-height:calc(100dvh - 56px)}
   .paper{height:auto}
   .chapter-head,.lesson-layout,.lower-grid{grid-template-columns:1fr}
   .chapter-head{gap:9px}
-  .lesson-content{grid-template-rows:auto}
+  .lesson-content{display:grid}
   .queue-rows{grid-template-rows:auto}
   .queue-row{grid-template-columns:1fr;min-height:108px}
   .mixed-track{min-height:190px}
