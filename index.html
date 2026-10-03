@@ -3,63 +3,108 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Priority Queue Lab</title>
-  <link rel="stylesheet" href="styles.css">
+  <title>Chapter 1 · Two Separate Queues</title>
+  <link rel="stylesheet" href="styles.css?v=book4">
 </head>
-<body class="no-scroll-desktop">
-  <header class="site-header">
-    <div class="site-header__inner">
-      <a class="brand" href="index.html">Priority Queue Lab</a>
-      <nav class="nav">
-        <a class="active" href="index.html">Home</a>
-        <a href="two-queues.html">Chapter 1</a>
+<body class="lesson-body">
+  <header class="bookbar">
+    <div class="bookbar__inner">
+      <div class="book-title">Priority Queue Lab</div>
+      <nav class="chapter-nav" aria-label="Chapters">
+        <a class="active" href="index.html">Chapter 1</a>
         <a href="mixed-queue.html">Chapter 2</a>
       </nav>
     </div>
   </header>
 
-  <main class="book-home">
-    <div class="book-page">
-      <p class="eyebrow">Data Structures · Priority Queues</p>
-      <h1>Priority Queues</h1>
-      <p class="book-lead">
-        This lab studies two linked-list implementations of a priority queue.
-        Read them in order, interact with each structure, then compare the pointer logic.
-      </p>
-
-      <div class="book-rule"></div>
-
-      <section class="chapter-row">
-        <div class="chapter-number">Chapter 1</div>
-        <div class="chapter-copy">
-          <h2>Two Separate Queues</h2>
-          <p>
-            Priority and general items are kept in two different queues.
-            Each queue has its own <b>Front</b> and <b>Rear</b>.
-          </p>
+  <main class="page-shell">
+    <article class="paper">
+      <header class="chapter-head">
+        <div>
+          <div class="chapter-kicker">Chapter 1 of 2</div>
+          <h1>Two Separate Queues</h1>
         </div>
-        <a class="chapter-link" href="two-queues.html">Begin →</a>
-      </section>
+        <p>
+          Priority and general items are stored in two independent linked queues.
+          Each queue has its own <b>Front</b> and <b>Rear</b>.
+        </p>
+      </header>
 
-      <section class="chapter-row">
-        <div class="chapter-number">Chapter 2</div>
-        <div class="chapter-copy">
-          <h2>One Mixed Queue</h2>
-          <p>
-            Priority and general nodes share one linked list.
-            <code>lastPriority</code> marks the boundary between them.
-          </p>
-        </div>
-        <a class="chapter-link" href="mixed-queue.html">Continue →</a>
-      </section>
+      <div class="chapter-rule"></div>
 
-      <div class="book-rule"></div>
+      <div class="lesson-layout">
+        <aside class="operation-panel">
+          <div class="step-heading"><span>1</span><strong>Choose an operation</strong></div>
 
-      <p class="book-note">
-        While using the visualizers, focus on when <b>Front</b>, <b>Rear</b>,
-        and <b>lastPriority</b> move. That is the whole point of the exercise.
-      </p>
-    </div>
+          <label for="value">Value</label>
+          <input id="value" type="number" placeholder="e.g. 20">
+
+          <label for="type">Queue type</label>
+          <select id="type">
+            <option value="0">Priority (prior = 0)</option>
+            <option value="1">General (prior = 1)</option>
+          </select>
+
+          <button class="btn-primary" onclick="enqueue()">Enqueue</button>
+          <button onclick="dequeue()">Dequeue Next</button>
+          <button onclick="loadExample()">Load Example</button>
+          <button class="btn-danger" onclick="resetQueue()">Reset</button>
+
+          <div class="margin-note">
+            <b>Rule:</b> Dequeue checks the priority queue first.
+            FIFO still applies inside each queue.
+          </div>
+        </aside>
+
+        <section class="lesson-content">
+          <section class="book-section queue-section">
+            <div class="section-heading">
+              <div class="step-heading"><span>2</span><strong>Watch the queues</strong></div>
+              <small>Front → ... → Rear</small>
+            </div>
+
+            <div class="queue-row">
+              <div class="queue-name">
+                <strong>Priority Queue</strong>
+                <small>prior = 0</small>
+              </div>
+              <div id="priorityQueue" class="queue-track"></div>
+            </div>
+
+            <div class="queue-row">
+              <div class="queue-name">
+                <strong>General Queue</strong>
+                <small>prior = 1</small>
+              </div>
+              <div id="generalQueue" class="queue-track"></div>
+            </div>
+          </section>
+
+          <div class="lower-grid">
+            <section class="book-section">
+              <div class="section-heading">
+                <div class="step-heading"><span>3</span><strong>Read the change</strong></div>
+              </div>
+              <div id="message" class="explanation">Add a node to begin.</div>
+            </section>
+
+            <section class="book-section code-section">
+              <div class="section-heading">
+                <div class="step-heading"><span>4</span><strong>Match the C++</strong></div>
+              </div>
+              <pre id="codePanel"></pre>
+            </section>
+          </div>
+        </section>
+      </div>
+
+      <footer class="page-footer">
+        <span>Chapter 1 · Two Separate Queues</span>
+        <a href="mixed-queue.html">Next: One Mixed Queue →</a>
+      </footer>
+    </article>
   </main>
+
+  <script src="two-queues.js?v=book4"></script>
 </body>
 </html>
