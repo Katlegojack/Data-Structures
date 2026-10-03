@@ -2,102 +2,85 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Interactive two-queue priority queue visualizer.">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Two Queues · Priority Queue Lab</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
-  <header class="topbar">
-    <div class="container topbar__inner">
-      <a class="brand" href="index.html">
-        <span class="brand__mark">PQ</span>
-        <span class="brand__text"><strong>Priority Queue Lab</strong><small>Data Structures</small></span>
-      </a>
-      <nav class="nav" aria-label="Primary navigation">
-        <a class="nav__link" href="index.html">Overview</a>
-        <a class="nav__link is-active" href="two-queues.html">Two queues</a>
-        <a class="nav__link " href="mixed-queue.html">Mixed queue</a>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="index.html">Priority Queue Lab</a>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a class="active" href="two-queues.html">Two Queues</a>
+        <a href="mixed-queue.html">Mixed Queue</a>
       </nav>
     </div>
   </header>
 
-  <main id="main" class="workspace">
-    <div class="container">
-      <div class="workspace__head">
-        <div>
-          <p class="eyebrow">Model 01</p>
-          <h1>Two separate linked queues</h1>
-          <p class="workspace__lead">
-            Priority and general nodes use independent linked lists. Watch each Front and Rear pointer move separately.
-          </p>
-        </div>
-        <span class="badge badge--info">Independent queues</span>
-      </div>
-
-      <div class="lab-grid">
-        <aside class="panel">
-          <h2>Queue controls</h2>
-          <div class="field">
-            <label for="value">Node value</label>
-            <input id="value" class="input" type="number" placeholder="e.g. 20">
-          </div>
-          <div class="field">
-            <label for="type">Node type</label>
-            <select id="type" class="input">
-              <option value="0">Priority · prior = 0</option>
-              <option value="1">General · prior = 1</option>
-            </select>
-            <small>Priority nodes are served before general nodes.</small>
-          </div>
-          <div class="control-stack">
-            <button class="btn btn--primary" onclick="enqueue()">Enqueue node</button>
-            <button class="btn btn--secondary" onclick="dequeue()">Dequeue next</button>
-            <button class="btn btn--quiet" onclick="loadExample()">Load example</button>
-            <button class="btn btn--danger" onclick="resetQueue()">Reset</button>
-          </div>
-          <div class="helper">
-            <strong>Watch:</strong> each queue owns its own Front and Rear, so pointer movement stays local.
-          </div>
-        </aside>
-
-        <section class="lab-main">
-          
-          <section class="panel queue-panel">
-            <div class="queue-panel__header">
-              <h2 class="queue-panel__title">Priority queue</h2>
-              <span class="badge badge--info">prior = 0</span>
-            </div>
-            <div id="priorityQueue" class="queue-track"></div>
-          </section>
-          <section class="panel queue-panel">
-            <div class="queue-panel__header">
-              <h2 class="queue-panel__title">General queue</h2>
-              <span class="badge badge--success">prior = 1</span>
-            </div>
-            <div id="generalQueue" class="queue-track"></div>
-          </section>
-
-          <section class="panel">
-            <h2>What just happened</h2>
-            <div id="message" class="status-box">Add a node to begin.</div>
-            <div class="rule-box">
-              <strong>Rule:</strong> dequeue from priority first. Only use the general queue when priority is empty.
-            </div>
-          </section>
-
-          <section class="panel code-panel">
-            <h2>Matching C++ logic</h2>
-            <pre id="codePanel"></pre>
-          </section>
-        </section>
+  <main class="lab-page">
+    <div class="page-heading">
+      <div>
+        <p class="eyebrow">Model 01</p>
+        <h1>Two Separate Queues</h1>
+        <p>Priority and general nodes are stored in separate linked queues.</p>
       </div>
     </div>
+
+    <div class="lab-layout">
+      <aside class="controls-card">
+        <h2>Controls</h2>
+
+        <label for="value">Value</label>
+        <input id="value" type="number" placeholder="e.g. 20">
+
+        <label for="type">Queue type</label>
+        <select id="type">
+          <option value="0">Priority (prior = 0)</option>
+          <option value="1">General (prior = 1)</option>
+        </select>
+
+        <button class="primary" onclick="enqueue()">Enqueue</button>
+        <button onclick="dequeue()">Dequeue Next</button>
+        <button onclick="loadExample()">Load Example</button>
+        <button class="danger" onclick="resetQueue()">Reset</button>
+
+        <p class="control-note">
+          Priority is always checked first during dequeue.
+          FIFO still applies inside each queue.
+        </p>
+      </aside>
+
+      <section class="lab-content">
+        <div class="visual-card">
+          <div class="visual-head">
+            <h2>Priority Queue</h2>
+            <span>prior = 0</span>
+          </div>
+          <div id="priorityQueue" class="queue-track large"></div>
+        </div>
+
+        <div class="visual-card">
+          <div class="visual-head">
+            <h2>General Queue</h2>
+            <span>prior = 1</span>
+          </div>
+          <div id="generalQueue" class="queue-track large"></div>
+        </div>
+
+        <div class="message-card">
+          <h2>What just happened</h2>
+          <div id="message">Add a node to begin.</div>
+        </div>
+
+        <div class="code-card">
+          <h2>Matching C++ Code</h2>
+          <pre id="codePanel"></pre>
+        </div>
+      </section>
+    </div>
   </main>
-  <footer class="footer">
-    <div class="container footer__inner"><strong>Priority Queue Lab</strong><span>Interactive linked-list learning.</span></div>
-  </footer>
+
   <script src="two-queues.js"></script>
 </body>
 </html>
