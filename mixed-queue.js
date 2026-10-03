@@ -72,7 +72,12 @@ function render(){
   el.innerHTML="";
 
   if(!queue.length){
-    el.innerHTML='<span class="empty">Queue is empty</span>';
+    el.innerHTML =
+      '<div class="null-state">' +
+        '<div class="null-pointer"><span>FRONT</span><span class="down">↓</span><span class="null-word">NULL</span></div>' +
+        '<div class="null-pointer"><span>REAR</span><span class="down">↓</span><span class="null-word">NULL</span></div>' +
+        '<div class="null-pointer"><span>lastPriority</span><span class="down">↓</span><span class="null-word">NULL</span></div>' +
+      '</div>';
     return;
   }
 
@@ -95,6 +100,11 @@ function render(){
       marker.className="marker marker--rear";
       marker.textContent="REAR";
       node.appendChild(marker);
+
+      const nullLink=document.createElement("span");
+      nullLink.className="null-link";
+      nullLink.textContent="NULL";
+      node.appendChild(nullLink);
     }
 
     if(index===lastPriority){
