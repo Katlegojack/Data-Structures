@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Interactive priority queue visualizations for learning linked-list queue implementations.">
+  <title>Priority Queue Lab</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="topbar">
+    <div class="container topbar__inner">
+      <a class="brand" href="index.html" aria-label="Priority Queue Lab home">
+        <span class="brand__mark">PQ</span>
+        <span class="brand__text">
+          <strong>Priority Queue Lab</strong>
+          <small>Data Structures</small>
+        </span>
+      </a>
+      <nav class="nav" aria-label="Primary navigation">
+        <a class="nav__link is-active" href="index.html">Overview</a>
+        <a class="nav__link" href="two-queues.html">Two queues</a>
+        <a class="nav__link" href="mixed-queue.html">Mixed queue</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="container hero__grid">
+        <div>
+          <p class="eyebrow">Interactive data structures</p>
+          <h1>See priority queues move, not just compile.</h1>
+          <p class="hero__lead">
+            Explore two linked-list implementations, watch each pointer change,
+            and connect every queue operation back to the C++ that performs it.
+          </p>
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="two-queues.html">Start with two queues</a>
+            <a class="btn btn--secondary" href="mixed-queue.html">Explore one mixed queue</a>
+          </div>
+        </div>
+
+        <aside class="hero__example" aria-label="Queue example">
+          <div class="hero__example-head">
+            <span>Current service order</span>
+            <span class="badge badge--info">Priority first</span>
+          </div>
+          <div class="mini-queue">
+            <span class="mini-node mini-node--priority">2</span>
+            <span class="mini-arrow">→</span>
+            <span class="mini-node mini-node--priority">7</span>
+            <span class="mini-arrow">→</span>
+            <span class="mini-node mini-node--general">3</span>
+            <span class="mini-arrow">→</span>
+            <span class="mini-node mini-node--general">17</span>
+          </div>
+          <dl class="metric-list">
+            <div><dt>Front</dt><dd>2</dd></div>
+            <div><dt>Last priority</dt><dd>7</dd></div>
+            <div><dt>Rear</dt><dd>17</dd></div>
+          </dl>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section section--soft">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Choose an implementation</p>
+          <h2>Same idea. Different pointer strategy.</h2>
+          <p>
+            Both models serve priority items first, but they organise memory differently.
+            Use both to understand why each pointer exists.
+          </p>
+        </div>
+
+        <div class="model-grid">
+          <article class="model-card">
+            <div class="model-card__number">01</div>
+            <div>
+              <span class="badge badge--info">Simpler pointer model</span>
+              <h3>Two separate queues</h3>
+              <p>
+                Priority and general nodes live in independent linked queues.
+                Each queue has its own Front and Rear.
+              </p>
+              <div class="queue-sketch" aria-hidden="true">
+                <div><strong>Priority</strong><span>F → 2 → 7 → R</span></div>
+                <div><strong>General</strong><span>F → 3 → 17 → R</span></div>
+              </div>
+              <a class="text-link" href="two-queues.html">Open visualizer <span aria-hidden="true">→</span></a>
+            </div>
+          </article>
+
+          <article class="model-card">
+            <div class="model-card__number">02</div>
+            <div>
+              <span class="badge badge--warning">Pointer boundary model</span>
+              <h3>One mixed queue</h3>
+              <p>
+                Priority and general nodes share one list. <code>lastPriority</code>
+                marks the boundary between the two sections.
+              </p>
+              <div class="queue-sketch" aria-hidden="true">
+                <div><strong>One list</strong><span>F → P → P → G → G → R</span></div>
+                <div><strong>Boundary</strong><span>lastPriority ↑</span></div>
+              </div>
+              <a class="text-link" href="mixed-queue.html">Open visualizer <span aria-hidden="true">→</span></a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container learning-grid">
+        <div>
+          <p class="eyebrow">What to watch</p>
+          <h2>Focus on pointer movement.</h2>
+        </div>
+        <div class="learning-list">
+          <div class="learning-item"><strong>Front</strong><span>The next node to leave the queue.</span></div>
+          <div class="learning-item"><strong>Rear</strong><span>The physical final node in the linked list.</span></div>
+          <div class="learning-item"><strong>lastPriority</strong><span>The final priority node in the mixed implementation.</span></div>
+          <div class="learning-item"><strong>FIFO</strong><span>Arrival order is preserved inside each priority class.</span></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <strong>Priority Queue Lab</strong>
+      <span>Built for learning linked-list queue operations.</span>
+    </div>
+  </footer>
+</body>
+</html>
