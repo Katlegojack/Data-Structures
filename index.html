@@ -6,57 +6,60 @@
   <title>Priority Queue Lab</title>
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="no-scroll-desktop">
   <header class="site-header">
     <div class="site-header__inner">
       <a class="brand" href="index.html">Priority Queue Lab</a>
       <nav class="nav">
         <a class="active" href="index.html">Home</a>
-        <a href="two-queues.html">Two Queues</a>
-        <a href="mixed-queue.html">Mixed Queue</a>
+        <a href="two-queues.html">Chapter 1</a>
+        <a href="mixed-queue.html">Chapter 2</a>
       </nav>
     </div>
   </header>
 
-  <main class="home">
-    <section class="home-intro">
-      <p class="eyebrow">Data Structures</p>
-      <h1>Priority Queue Visualizer</h1>
-      <p>
-        This small lab shows two ways to implement priority queues with linked lists.
-        Use the controls, watch the pointers move, and compare the behaviour with the C++ code.
+  <main class="book-home">
+    <div class="book-page">
+      <p class="eyebrow">Data Structures · Priority Queues</p>
+      <h1>Priority Queues</h1>
+      <p class="book-lead">
+        This lab studies two linked-list implementations of a priority queue.
+        Read them in order, interact with each structure, then compare the pointer logic.
       </p>
-    </section>
 
-    <section class="home-options">
-      <a class="option-card" href="two-queues.html">
-        <span class="option-number">01</span>
-        <h2>Two Separate Queues</h2>
-        <p>
-          Priority and general items are stored in two independent queues.
-          Each queue has its own Front and Rear.
-        </p>
-        <strong>Open visualizer →</strong>
-      </a>
+      <div class="book-rule"></div>
 
-      <a class="option-card" href="mixed-queue.html">
-        <span class="option-number">02</span>
-        <h2>One Mixed Queue</h2>
-        <p>
-          Priority and general nodes share one linked list.
-          <code>lastPriority</code> marks the end of the priority section.
-        </p>
-        <strong>Open visualizer →</strong>
-      </a>
-    </section>
+      <section class="chapter-row">
+        <div class="chapter-number">Chapter 1</div>
+        <div class="chapter-copy">
+          <h2>Two Separate Queues</h2>
+          <p>
+            Priority and general items are kept in two different queues.
+            Each queue has its own <b>Front</b> and <b>Rear</b>.
+          </p>
+        </div>
+        <a class="chapter-link" href="two-queues.html">Begin →</a>
+      </section>
 
-    <section class="home-note">
-      <h2>What to pay attention to</h2>
-      <p>
-        Watch <b>Front</b>, <b>Rear</b>, and <b>lastPriority</b>.
-        The goal is to understand exactly when each pointer moves and why.
+      <section class="chapter-row">
+        <div class="chapter-number">Chapter 2</div>
+        <div class="chapter-copy">
+          <h2>One Mixed Queue</h2>
+          <p>
+            Priority and general nodes share one linked list.
+            <code>lastPriority</code> marks the boundary between them.
+          </p>
+        </div>
+        <a class="chapter-link" href="mixed-queue.html">Continue →</a>
+      </section>
+
+      <div class="book-rule"></div>
+
+      <p class="book-note">
+        While using the visualizers, focus on when <b>Front</b>, <b>Rear</b>,
+        and <b>lastPriority</b> move. That is the whole point of the exercise.
       </p>
-    </section>
+    </div>
   </main>
 </body>
 </html>
