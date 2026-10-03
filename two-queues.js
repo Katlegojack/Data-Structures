@@ -48,28 +48,34 @@ const dequeueCode=`void dequeue() {
 
 function renderQueue(id,values,cls){
   const el=document.getElementById(id);
+  if(!el) return;
+
   el.innerHTML="";
+
   if(!values.length){
     el.innerHTML='<span class="empty">Queue is empty</span>';
     return;
   }
+
   values.forEach((value,index)=>{
     const node=document.createElement("div");
     node.className=`node node--${cls}`;
     node.textContent=value;
 
     if(index===0){
-      const m=document.createElement("span");
-      m.className="marker marker--front";
-      m.textContent="FRONT";
-      node.appendChild(m);
+      const marker=document.createElement("span");
+      marker.className="marker marker--front";
+      marker.textContent="FRONT";
+      node.appendChild(marker);
     }
+
     if(index===values.length-1){
-      const m=document.createElement("span");
-      m.className="marker marker--rear";
-      m.textContent="REAR";
-      node.appendChild(m);
+      const marker=document.createElement("span");
+      marker.className="marker marker--rear";
+      marker.textContent="REAR";
+      node.appendChild(marker);
     }
+
     el.appendChild(node);
   });
 }
@@ -79,12 +85,28 @@ function render(){
   renderQueue("generalQueue",generalQueue,"general");
 }
 
-function setMessage(text){document.getElementById("message").textContent=text;}
+function setMessage(text){
+  const el=document.getElementById("message");
+  if(!el) return;
+
+  el.textContent=text;
+  el.classList.remove("is-updated");
+  void el.offsetWidth;
+  el.classList.add("is-updated");
+}
+
+function setCode(code){
+  const panel=document.getElementById("codePanel");
+  if(panel) panel.textContent=code;
+}
 
 function enqueue(){
   const input=document.getElementById("value");
+  const type=document.getElementById("type");
+
+  if(!input || !type) return;
+
   const raw=input.value.trim();
-  const type=document.getElementById("type").value;
 
   if(raw===""){
     setMessage("Enter a node value first.");
@@ -94,66 +116,83 @@ function enqueue(){
 
   const value=Number(raw);
 
-  if(type==="0"){
+  if(type.value==="0"){
     const wasEmpty=priorityQueue.length===0;
     priorityQueue.push(value);
+
     setMessage(
       wasEmpty
-        ? `${value} starts the priority queue, so Priority Front and Priority Rear both point to it.`
-        : `${value} is linked after the old Priority Rear. Priority Rear now points to ${value}.`
+        ? `${value} starts the priority queue. Priority Front and Priority Rear both point to this node.`
+        : `${value} is linked after the old Priority Rear. Priority Rear now moves to ${value}.`
     );
   }else{
     const wasEmpty=generalQueue.length===0;
     generalQueue.push(value);
+
     setMessage(
       wasEmpty
-        ? `${value} starts the general queue, so General Front and General Rear both point to it.`
-        : `${value} is linked after the old General Rear. General Rear now points to ${value}.`
+        ? `${value} starts the general queue. General Front and General Rear both point to this node.`
+        : `${value} is linked after the old General Rear. General Rear now moves to ${value}.`
     );
   }
 
   input.value="";
-  document.getElementById("codePanel").textContent=enqueueCode;
+  setCode(enqueueCode);
   render();
+  input.focus();
 }
 
 function dequeue(){
+  setCode(dequeueCode);
+
   if(priorityQueue.length){
     const removed=priorityQueue.shift();
+
     setMessage(
       priorityQueue.length
         ? `Priority is not empty, so ${removed} leaves first. Priority Front moves to ${priorityQueue[0]}.`
-        : `Removed priority node ${removed}. The priority queue is now empty, so both priority pointers become NULL.`
+        : `Removed priority node ${removed}. The priority queue is now empty, so Priority Front and Priority Rear become NULL.`
     );
   }else if(generalQueue.length){
     const removed=generalQueue.shift();
+
     setMessage(
       generalQueue.length
         ? `Priority is empty, so general node ${removed} leaves. General Front moves to ${generalQueue[0]}.`
-        : `Priority was empty, so general node ${removed} leaves. The general queue is now empty.`
+        : `Priority is empty, so general node ${removed} leaves. The general queue is now empty, so General Front and General Rear become NULL.`
     );
   }else{
     setMessage("Both queues are empty. There is nothing to dequeue.");
   }
 
-  document.getElementById("codePanel").textContent=dequeueCode;
   render();
 }
 
 function loadExample(){
   priorityQueue=[2,7,9,91];
   generalQueue=[3,17];
-  setMessage("Example loaded. Dequeue to see why all priority nodes leave before the general queue starts moving.");
+  setCode(enqueueCode);
+  setMessage("Example loaded. Dequeue repeatedly to see every priority node leave before the general queue starts moving.");
   render();
 }
 
 function resetQueue(){
   priorityQueue=[];
   generalQueue=[];
-  setMessage("Both queues were reset. All four queue pointers are NULL.");
-  document.getElementById("codePanel").textContent=enqueueCode;
+  setCode(enqueueCode);
+  setMessage("Both queues were reset. Priority Front, Priority Rear, General Front, and General Rear are NULL.");
   render();
+
+  const input=document.getElementById("value");
+  if(input) input.focus();
 }
 
-document.getElementById("codePanel").textContent=enqueueCode;
+const valueInput=document.getElementById("value");
+if(valueInput){
+  valueInput.addEventListener("keydown",event=>{
+    if(event.key==="Enter") enqueue();
+  });
+}
+
+setCode(enqueueCode);
 render();
