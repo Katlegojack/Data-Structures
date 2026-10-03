@@ -3,33 +3,33 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Two Queues · Priority Queue Lab</title>
+  <title>Chapter 1 · Two Separate Queues</title>
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="no-scroll-desktop">
   <header class="site-header">
     <div class="site-header__inner">
       <a class="brand" href="index.html">Priority Queue Lab</a>
       <nav class="nav">
         <a href="index.html">Home</a>
-        <a class="active" href="two-queues.html">Two Queues</a>
-        <a href="mixed-queue.html">Mixed Queue</a>
+        <a class="active" href="two-queues.html">Chapter 1</a>
+        <a href="mixed-queue.html">Chapter 2</a>
       </nav>
     </div>
   </header>
 
-  <main class="lab-page">
-    <div class="page-heading">
+  <main class="lesson-page">
+    <div class="lesson-heading">
       <div>
-        <p class="eyebrow">Model 01</p>
+        <p class="eyebrow">Chapter 1</p>
         <h1>Two Separate Queues</h1>
-        <p>Priority and general nodes are stored in separate linked queues.</p>
       </div>
+      <p>Priority and general nodes are stored in independent linked queues.</p>
     </div>
 
-    <div class="lab-layout">
-      <aside class="controls-card">
-        <h2>Controls</h2>
+    <div class="lesson-grid">
+      <aside class="step-panel">
+        <div class="step-label">1 · Choose an operation</div>
 
         <label for="value">Value</label>
         <input id="value" type="number" placeholder="e.g. 20">
@@ -45,37 +45,39 @@
         <button onclick="loadExample()">Load Example</button>
         <button class="danger" onclick="resetQueue()">Reset</button>
 
-        <p class="control-note">
-          Priority is always checked first during dequeue.
-          FIFO still applies inside each queue.
+        <p class="step-note">
+          Dequeue checks the priority queue first. FIFO still applies inside each queue.
         </p>
       </aside>
 
-      <section class="lab-content">
-        <div class="visual-card">
-          <div class="visual-head">
-            <h2>Priority Queue</h2>
-            <span>prior = 0</span>
+      <section class="lesson-main">
+        <div class="sequence-block visual-block">
+          <div class="sequence-title">
+            <span>2 · Watch the queues</span>
+            <small>Front → ... → Rear</small>
           </div>
-          <div id="priorityQueue" class="queue-track large"></div>
-        </div>
 
-        <div class="visual-card">
-          <div class="visual-head">
-            <h2>General Queue</h2>
-            <span>prior = 1</span>
+          <div class="queue-lane">
+            <div class="lane-label">Priority Queue <small>prior = 0</small></div>
+            <div id="priorityQueue" class="queue-track"></div>
           </div>
-          <div id="generalQueue" class="queue-track large"></div>
+
+          <div class="queue-lane">
+            <div class="lane-label">General Queue <small>prior = 1</small></div>
+            <div id="generalQueue" class="queue-track"></div>
+          </div>
         </div>
 
-        <div class="message-card">
-          <h2>What just happened</h2>
-          <div id="message">Add a node to begin.</div>
-        </div>
+        <div class="lesson-bottom">
+          <div class="sequence-block explain-block">
+            <div class="sequence-title"><span>3 · Read what changed</span></div>
+            <div id="message" class="message-box">Add a node to begin.</div>
+          </div>
 
-        <div class="code-card">
-          <h2>Matching C++ Code</h2>
-          <pre id="codePanel"></pre>
+          <div class="sequence-block code-block">
+            <div class="sequence-title"><span>4 · Match it to the C++</span></div>
+            <pre id="codePanel"></pre>
+          </div>
         </div>
       </section>
     </div>
