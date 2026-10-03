@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Chapter 3 · Tree Traversal DFS</title>
-  <link rel="stylesheet" href="tree-styles.css?v=1">
+  <link rel="stylesheet" href="tree-styles.css?v=2">
 </head>
 <body>
   <header class="bookbar">
@@ -29,7 +29,7 @@
         </div>
         <p>
           DFS explores one branch as deeply as possible before returning to visit another branch.
-          In a binary tree, common DFS orders are preorder, inorder, and postorder.
+          In this module, we use <b>preorder traversal</b>: Root, Left, Right.
         </p>
       </header>
 
@@ -38,31 +38,22 @@
       <section class="problem-statement">
         <strong>Problem statement</strong>
         <p>
-          Traverse the binary tree using DFS and record the order in which the nodes are visited.
-          Compare preorder, inorder, and postorder traversal.
+          Traverse the binary tree using preorder DFS and record the order in which the nodes are visited.
+          Visit the root first, then the left subtree, then the right subtree.
         </p>
       </section>
 
       <div class="lesson-layout">
         <aside class="operation-panel">
-          <div class="step-heading"><span>1</span><strong>Choose traversal</strong></div>
-
-          <label for="dfsType">DFS order</label>
-          <select id="dfsType">
-            <option value="preorder">Preorder</option>
-            <option value="inorder">Inorder</option>
-            <option value="postorder">Postorder</option>
-          </select>
+          <div class="step-heading"><span>1</span><strong>Control preorder DFS</strong></div>
 
           <button type="button" class="btn-primary" onclick="nextStep()">Next Step</button>
-          <button type="button" onclick="runTraversal()">Run Traversal</button>
+          <button type="button" onclick="runTraversal()">Run Preorder</button>
           <button type="button" class="btn-danger" onclick="resetTraversal()">Reset</button>
 
           <div class="margin-note">
-            <b>Remember:</b><br>
-            Preorder = Root, Left, Right<br>
-            Inorder = Left, Root, Right<br>
-            Postorder = Left, Right, Root
+            <b>Preorder rule:</b><br>
+            Root → Left → Right
           </div>
         </aside>
 
@@ -119,6 +110,6 @@
     </article>
   </main>
 
-  <script src="tree-dfs.js?v=1"></script>
+  <script src="tree-dfs.js?v=2"></script>
 </body>
 </html>
