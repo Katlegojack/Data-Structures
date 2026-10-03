@@ -2,11 +2,122 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="refresh" content="0; url=index.html">
-  <link rel="canonical" href="index.html">
-  <title>Priority Queue Lab</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Chapter 1 · Introduction to Priority Queues</title>
+  <link rel="stylesheet" href="styles.css?v=final2">
 </head>
-<body>
-  <p><a href="index.html">Open Chapter 1</a></p>
+<body class="lesson-body">
+  <header class="bookbar">
+    <div class="bookbar__inner">
+      <div class="book-title">Introduction to Priority Queues</div>
+      <nav class="chapter-nav" aria-label="Chapters">
+        <a class="active" href="two-queues.html" aria-current="page">Chapter 1</a>
+        <a href="mixed-queue.html">Chapter 2</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <article class="paper">
+      <header class="chapter-head">
+        <div>
+          <div class="chapter-kicker">Chapter 1 of 2</div>
+          <h1>Introduction to Priority Queues</h1>
+          <div class="chapter-topic">Two Separate Queues</div>
+        </div>
+        <p>
+          Priority and general items live in two independent linked queues.
+          Each queue has its own <b>Front</b> and <b>Rear</b>.
+        </p>
+      </header>
+
+      <div class="chapter-rule"></div>
+
+      <div class="lesson-layout">
+        <aside class="operation-panel">
+          <div class="step-heading"><span>1</span><strong>Choose an operation</strong></div>
+
+          <label for="value">Value</label>
+          <input id="value" type="number" placeholder="e.g. 20" autocomplete="off">
+
+          <label for="type">Queue type</label>
+          <select id="type">
+            <option value="0">Priority (prior = 0)</option>
+            <option value="1">General (prior = 1)</option>
+          </select>
+
+          <button type="button" class="btn-primary" onclick="enqueue()">Enqueue</button>
+          <button type="button" onclick="dequeue()">Dequeue Next</button>
+          <button type="button" onclick="loadExample()">Load Example</button>
+          <button type="button" class="btn-danger" onclick="resetQueue()">Reset</button>
+
+          <div class="margin-note">
+            <b>Rule:</b> dequeue checks the priority queue first.
+            FIFO still applies inside each queue.
+          </div>
+        </aside>
+
+        <section class="lesson-content">
+          <section class="book-section queue-section">
+            <div class="section-heading">
+              <div class="step-heading"><span>2</span><strong>Watch the queues</strong></div>
+              <small>Front → ... → Rear</small>
+            </div>
+
+            <div class="queue-rows">
+              <div class="queue-row">
+                <div class="queue-name">
+                  <strong>Priority Queue</strong>
+                  <small>prior = 0</small>
+                </div>
+                <div id="priorityQueue" class="queue-track"></div>
+              </div>
+
+              <div class="queue-row">
+                <div class="queue-name">
+                  <strong>General Queue</strong>
+                  <small>prior = 1</small>
+                </div>
+                <div id="generalQueue" class="queue-track"></div>
+              </div>
+            </div>
+          </section>
+
+          <div class="lower-grid">
+            <section class="book-section">
+              <div class="section-heading">
+                <div class="step-heading"><span>3</span><strong>Read the change</strong></div>
+              </div>
+              <div id="message" class="explanation">Add a node to begin.</div>
+            </section>
+
+            <section class="book-section code-section">
+              <div class="section-heading">
+                <div class="step-heading"><span>4</span><strong>Match the C++</strong></div>
+              </div>
+              <pre id="codePanel">void enqueue(int key, int prior) {
+    Node *newNode = new Node;
+    newNode-&gt;data = key;
+    newNode-&gt;next = NULL;
+
+    if (prior == 0) {
+        // priority queue
+    } else {
+        // general queue
+    }
+}</pre>
+            </section>
+          </div>
+        </section>
+      </div>
+
+      <footer class="page-footer">
+        <span>Chapter 1 · Two Separate Queues</span>
+        <a href="mixed-queue.html">Next: Chapter 2 →</a>
+      </footer>
+    </article>
+  </main>
+
+  <script src="two-queues.js?v=final2"></script>
 </body>
 </html>
