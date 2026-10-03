@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Chapter 1 · Two Separate Queues</title>
-  <link rel="stylesheet" href="styles.css?v=book4">
+  <title>Chapter 1 · Introduction to Priority Queues</title>
+  <link rel="stylesheet" href="styles.css?v=book5">
 </head>
 <body class="lesson-body">
   <header class="bookbar">
     <div class="bookbar__inner">
-      <div class="book-title">Priority Queue Lab</div>
+      <div class="book-title">Introduction to Priority Queues</div>
       <nav class="chapter-nav" aria-label="Chapters">
         <a class="active" href="index.html">Chapter 1</a>
         <a href="mixed-queue.html">Chapter 2</a>
@@ -22,7 +22,8 @@
       <header class="chapter-head">
         <div>
           <div class="chapter-kicker">Chapter 1 of 2</div>
-          <h1>Two Separate Queues</h1>
+          <h1>Introduction to Priority Queues</h1>
+          <div class="chapter-topic">Implementation A · Two Separate Queues</div>
         </div>
         <p>
           Priority and general items are stored in two independent linked queues.
@@ -37,7 +38,7 @@
           <div class="step-heading"><span>1</span><strong>Choose an operation</strong></div>
 
           <label for="value">Value</label>
-          <input id="value" type="number" placeholder="e.g. 20">
+          <input id="value" type="number" placeholder="e.g. 20" autocomplete="off">
 
           <label for="type">Queue type</label>
           <select id="type">
@@ -45,10 +46,10 @@
             <option value="1">General (prior = 1)</option>
           </select>
 
-          <button class="btn-primary" onclick="enqueue()">Enqueue</button>
-          <button onclick="dequeue()">Dequeue Next</button>
-          <button onclick="loadExample()">Load Example</button>
-          <button class="btn-danger" onclick="resetQueue()">Reset</button>
+          <button type="button" class="btn-primary" onclick="enqueue()">Enqueue</button>
+          <button type="button" onclick="dequeue()">Dequeue Next</button>
+          <button type="button" onclick="loadExample()">Load Example</button>
+          <button type="button" class="btn-danger" onclick="resetQueue()">Reset</button>
 
           <div class="margin-note">
             <b>Rule:</b> Dequeue checks the priority queue first.
@@ -63,20 +64,22 @@
               <small>Front → ... → Rear</small>
             </div>
 
-            <div class="queue-row">
-              <div class="queue-name">
-                <strong>Priority Queue</strong>
-                <small>prior = 0</small>
+            <div class="queue-rows">
+              <div class="queue-row">
+                <div class="queue-name">
+                  <strong>Priority Queue</strong>
+                  <small>prior = 0</small>
+                </div>
+                <div id="priorityQueue" class="queue-track"></div>
               </div>
-              <div id="priorityQueue" class="queue-track"></div>
-            </div>
 
-            <div class="queue-row">
-              <div class="queue-name">
-                <strong>General Queue</strong>
-                <small>prior = 1</small>
+              <div class="queue-row">
+                <div class="queue-name">
+                  <strong>General Queue</strong>
+                  <small>prior = 1</small>
+                </div>
+                <div id="generalQueue" class="queue-track"></div>
               </div>
-              <div id="generalQueue" class="queue-track"></div>
             </div>
           </section>
 
@@ -99,12 +102,12 @@
       </div>
 
       <footer class="page-footer">
-        <span>Chapter 1 · Two Separate Queues</span>
-        <a href="mixed-queue.html">Next: One Mixed Queue →</a>
+        <span>Implementation A · Two Separate Queues</span>
+        <a href="mixed-queue.html">Next chapter →</a>
       </footer>
     </article>
   </main>
 
-  <script src="two-queues.js?v=book4"></script>
+  <script src="two-queues.js?v=book5"></script>
 </body>
 </html>
