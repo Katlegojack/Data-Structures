@@ -57,14 +57,18 @@ const dequeueCode=`void dequeue() {
 
 function lastPriorityIndex(){
   let index=-1;
+
   for(let i=0;i<queue.length;i++){
     if(queue[i].prior===0) index=i;
   }
+
   return index;
 }
 
 function render(){
   const el=document.getElementById("mixedQueue");
+  if(!el) return;
+
   el.innerHTML="";
 
   if(!queue.length){
@@ -72,7 +76,7 @@ function render(){
     return;
   }
 
-  const lp=lastPriorityIndex();
+  const lastPriority=lastPriorityIndex();
 
   queue.forEach((item,index)=>{
     const node=document.createElement("div");
@@ -80,36 +84,53 @@ function render(){
     node.textContent=item.value;
 
     if(index===0){
-      const m=document.createElement("span");
-      m.className="marker marker--front";
-      m.textContent="FRONT";
-      node.appendChild(m);
+      const marker=document.createElement("span");
+      marker.className="marker marker--front";
+      marker.textContent="FRONT";
+      node.appendChild(marker);
     }
 
     if(index===queue.length-1){
-      const m=document.createElement("span");
-      m.className="marker marker--rear";
-      m.textContent="REAR";
-      node.appendChild(m);
+      const marker=document.createElement("span");
+      marker.className="marker marker--rear";
+      marker.textContent="REAR";
+      node.appendChild(marker);
     }
 
-    if(index===lp){
-      const m=document.createElement("span");
-      m.className="marker marker--last";
-      m.textContent="lastPriority";
-      node.appendChild(m);
+    if(index===lastPriority){
+      const marker=document.createElement("span");
+      marker.className="marker marker--last";
+      marker.textContent="lastPriority";
+      node.appendChild(marker);
     }
 
     el.appendChild(node);
   });
 }
 
-function setMessage(text){document.getElementById("message").textContent=text;}
+function setMessage(text){
+  const el=document.getElementById("message");
+  if(!el) return;
+
+  el.textContent=text;
+  el.classList.remove("is-updated");
+  void el.offsetWidth;
+  el.classList.add("is-updated");
+}
+
+function setCode(code){
+  const panel=document.getElementById("codePanel");
+  if(panel) panel.textContent=code;
+}
 
 function enqueue(){
   const input=document.getElementById("value");
+  const type=document.getElementById("type");
+
+  if(!input || !type) return;
+
   const raw=input.value.trim();
-  const prior=Number(document.getElementById("type").value);
+  const prior=Number(type.value);
 
   if(raw===""){
     setMessage("Enter a node value first.");
@@ -121,6 +142,7 @@ function enqueue(){
 
   if(queue.length===0){
     queue.push({value,prior});
+
     setMessage(
       prior===0
         ? `${value} is the first node. Front, Rear, and lastPriority all point to it.`
@@ -128,20 +150,20 @@ function enqueue(){
     );
   }
   else if(prior===0){
-    const lp=lastPriorityIndex();
+    const lastPriority=lastPriorityIndex();
 
-    if(lp===-1){
+    if(lastPriority===-1){
       queue.unshift({value,prior});
       setMessage(
         `No priority nodes existed, so ${value} is inserted at Front and becomes lastPriority. Rear stays where it was.`
       );
     }else{
-      const insertedAtEnd=lp===queue.length-1;
-      queue.splice(lp+1,0,{value,prior});
+      const insertedAtEnd=lastPriority===queue.length-1;
+      queue.splice(lastPriority+1,0,{value,prior});
 
       setMessage(
         insertedAtEnd
-          ? `${value} is inserted after lastPriority. Because that position was the end of the list, Rear also moves to ${value}.`
+          ? `${value} is inserted after lastPriority. That position was the physical end, so Rear also moves to ${value}.`
           : `${value} is inserted after lastPriority and before the general section. Rear does not move because the physical last node did not change.`
       );
     }
@@ -154,24 +176,27 @@ function enqueue(){
   }
 
   input.value="";
-  document.getElementById("codePanel").textContent=enqueueCode;
+  setCode(enqueueCode);
   render();
+  input.focus();
 }
 
 function dequeue(){
+  setCode(dequeueCode);
+
   if(!queue.length){
     setMessage("The queue is empty. There is nothing to dequeue.");
     return;
   }
 
   const removed=queue.shift();
-  const lp=lastPriorityIndex();
+  const lastPriority=lastPriorityIndex();
 
   if(!queue.length){
     setMessage(
       `Removed ${removed.value}. The list is now empty, so Front, Rear, and lastPriority are all NULL.`
     );
-  }else if(removed.prior===0 && lp===-1){
+  }else if(removed.prior===0 && lastPriority===-1){
     setMessage(
       `Removed priority node ${removed.value}. No priority nodes remain, so lastPriority becomes NULL. Front moves to ${queue[0].value}.`
     );
@@ -181,7 +206,6 @@ function dequeue(){
     );
   }
 
-  document.getElementById("codePanel").textContent=dequeueCode;
   render();
 }
 
@@ -194,16 +218,28 @@ function loadExample(){
     {value:3,prior:1},
     {value:17,prior:1}
   ];
-  setMessage("Example loaded. lastPriority marks 91, while Rear stays on 17.");
+
+  setCode(enqueueCode);
+  setMessage("Example loaded. lastPriority points to 91 while Rear points to 17.");
   render();
 }
 
 function resetQueue(){
   queue=[];
+  setCode(enqueueCode);
   setMessage("Queue reset. Front, Rear, and lastPriority are NULL.");
-  document.getElementById("codePanel").textContent=enqueueCode;
   render();
+
+  const input=document.getElementById("value");
+  if(input) input.focus();
 }
 
-document.getElementById("codePanel").textContent=enqueueCode;
+const valueInput=document.getElementById("value");
+if(valueInput){
+  valueInput.addEventListener("keydown",event=>{
+    if(event.key==="Enter") enqueue();
+  });
+}
+
+setCode(enqueueCode);
 render();
