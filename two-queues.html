@@ -2,87 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Chapter 1 · Two Separate Queues</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta http-equiv="refresh" content="0; url=index.html">
+  <link rel="canonical" href="index.html">
+  <title>Priority Queue Lab</title>
 </head>
-<body class="no-scroll-desktop">
-  <header class="site-header">
-    <div class="site-header__inner">
-      <a class="brand" href="index.html">Priority Queue Lab</a>
-      <nav class="nav">
-        <a href="index.html">Home</a>
-        <a class="active" href="two-queues.html">Chapter 1</a>
-        <a href="mixed-queue.html">Chapter 2</a>
-      </nav>
-    </div>
-  </header>
-
-  <main class="lesson-page">
-    <div class="lesson-heading">
-      <div>
-        <p class="eyebrow">Chapter 1</p>
-        <h1>Two Separate Queues</h1>
-      </div>
-      <p>Priority and general nodes are stored in independent linked queues.</p>
-    </div>
-
-    <div class="lesson-grid">
-      <aside class="step-panel">
-        <div class="step-label">1 · Choose an operation</div>
-
-        <label for="value">Value</label>
-        <input id="value" type="number" placeholder="e.g. 20">
-
-        <label for="type">Queue type</label>
-        <select id="type">
-          <option value="0">Priority (prior = 0)</option>
-          <option value="1">General (prior = 1)</option>
-        </select>
-
-        <button class="primary" onclick="enqueue()">Enqueue</button>
-        <button onclick="dequeue()">Dequeue Next</button>
-        <button onclick="loadExample()">Load Example</button>
-        <button class="danger" onclick="resetQueue()">Reset</button>
-
-        <p class="step-note">
-          Dequeue checks the priority queue first. FIFO still applies inside each queue.
-        </p>
-      </aside>
-
-      <section class="lesson-main">
-        <div class="sequence-block visual-block">
-          <div class="sequence-title">
-            <span>2 · Watch the queues</span>
-            <small>Front → ... → Rear</small>
-          </div>
-
-          <div class="queue-lane">
-            <div class="lane-label">Priority Queue <small>prior = 0</small></div>
-            <div id="priorityQueue" class="queue-track"></div>
-          </div>
-
-          <div class="queue-lane">
-            <div class="lane-label">General Queue <small>prior = 1</small></div>
-            <div id="generalQueue" class="queue-track"></div>
-          </div>
-        </div>
-
-        <div class="lesson-bottom">
-          <div class="sequence-block explain-block">
-            <div class="sequence-title"><span>3 · Read what changed</span></div>
-            <div id="message" class="message-box">Add a node to begin.</div>
-          </div>
-
-          <div class="sequence-block code-block">
-            <div class="sequence-title"><span>4 · Match it to the C++</span></div>
-            <pre id="codePanel"></pre>
-          </div>
-        </div>
-      </section>
-    </div>
-  </main>
-
-  <script src="two-queues.js"></script>
+<body>
+  <p><a href="index.html">Open Chapter 1</a></p>
 </body>
 </html>
