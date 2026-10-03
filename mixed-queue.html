@@ -3,33 +3,33 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Mixed Queue · Priority Queue Lab</title>
+  <title>Chapter 2 · One Mixed Queue</title>
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="no-scroll-desktop">
   <header class="site-header">
     <div class="site-header__inner">
       <a class="brand" href="index.html">Priority Queue Lab</a>
       <nav class="nav">
         <a href="index.html">Home</a>
-        <a href="two-queues.html">Two Queues</a>
-        <a class="active" href="mixed-queue.html">Mixed Queue</a>
+        <a href="two-queues.html">Chapter 1</a>
+        <a class="active" href="mixed-queue.html">Chapter 2</a>
       </nav>
     </div>
   </header>
 
-  <main class="lab-page">
-    <div class="page-heading">
+  <main class="lesson-page">
+    <div class="lesson-heading">
       <div>
-        <p class="eyebrow">Model 02</p>
+        <p class="eyebrow">Chapter 2</p>
         <h1>One Mixed Queue</h1>
-        <p>Priority and general nodes share one linked list.</p>
       </div>
+      <p>Priority and general nodes share one linked list.</p>
     </div>
 
-    <div class="lab-layout">
-      <aside class="controls-card">
-        <h2>Controls</h2>
+    <div class="lesson-grid">
+      <aside class="step-panel">
+        <div class="step-label">1 · Choose an operation</div>
 
         <label for="value">Value</label>
         <input id="value" type="number" placeholder="e.g. 20">
@@ -45,33 +45,36 @@
         <button onclick="loadExample()">Load Example</button>
         <button class="danger" onclick="resetQueue()">Reset</button>
 
-        <p class="control-note">
-          Priority nodes are inserted after <b>lastPriority</b>.
-          General nodes are appended at <b>Rear</b>.
+        <p class="step-note">
+          Priority nodes go after <b>lastPriority</b>. General nodes go at <b>Rear</b>.
         </p>
       </aside>
 
-      <section class="lab-content">
-        <div class="visual-card mixed-visual">
-          <div class="visual-head">
-            <h2>Single Linked Queue</h2>
-            <span>Priority → General</span>
+      <section class="lesson-main">
+        <div class="sequence-block visual-block mixed-block">
+          <div class="sequence-title">
+            <span>2 · Watch the single queue</span>
+            <small>Priority section → General section</small>
           </div>
-          <div id="mixedQueue" class="queue-track extra-large"></div>
+
+          <div id="mixedQueue" class="queue-track mixed-track"></div>
+
           <div class="legend">
-            <span><i class="priority-key"></i>Priority</span>
-            <span><i class="general-key"></i>General</span>
+            <span><i class="priority-key"></i>Priority node</span>
+            <span><i class="general-key"></i>General node</span>
           </div>
         </div>
 
-        <div class="message-card">
-          <h2>What just happened</h2>
-          <div id="message">Add a node to begin.</div>
-        </div>
+        <div class="lesson-bottom">
+          <div class="sequence-block explain-block">
+            <div class="sequence-title"><span>3 · Read what changed</span></div>
+            <div id="message" class="message-box">Add a node to begin.</div>
+          </div>
 
-        <div class="code-card">
-          <h2>Matching C++ Code</h2>
-          <pre id="codePanel"></pre>
+          <div class="sequence-block code-block">
+            <div class="sequence-title"><span>4 · Match it to the C++</span></div>
+            <pre id="codePanel"></pre>
+          </div>
         </div>
       </section>
     </div>
